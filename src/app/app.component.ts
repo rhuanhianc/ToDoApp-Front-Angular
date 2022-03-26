@@ -1,10 +1,17 @@
 import { Component } from '@angular/core';
-
+import { FormControl, FormGroup } from '@angular/forms';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'ToDoApp-Front-Angular';
+  
+  form: FormGroup = new FormGroup({
+    descricao : new FormControl(''),
+  });
+
+  submit() {
+    console.log(this.form.value);
+  }
 }
