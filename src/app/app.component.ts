@@ -36,11 +36,16 @@ export class AppComponent implements OnInit {
 
     });
   }
+  done(todo : ToDo) {
+    this.service.done(todo)
+    .subscribe(todoFeito => {
+      todo.feito = true
+      todo.feitoData = todoFeito.feitoData
+    })
+  }
   delete(todo : ToDo) {
     this.service.delete(todo)
-    .subscribe(
-     {
-        next: () => {
+    .subscribe({ next: () => {
           this.listarTodos()
         }
      }

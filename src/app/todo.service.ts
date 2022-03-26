@@ -7,6 +7,7 @@ import { HttpClient } from "@angular/common/http";
     {providedIn: 'root'}
 )
 export class TodoService {  
+private url: string = 'http://localhost:8080/api/todos';
 
     constructor (
         private http : HttpClient
@@ -14,14 +15,19 @@ export class TodoService {
     ) {
     }
     salvar(todo :ToDo) : Observable<ToDo> {
-      return this.http.post<ToDo>('http://localhost:8080/api/todos', todo)
+      return this.http.post<ToDo>(`${this.url}`, todo)
     }
     getAll() : Observable<ToDo[]> {
-        return this.http.get<ToDo[]>('http://localhost:8080/api/todos')
+        return this.http.get<ToDo[]>(`${this.url}`)
         }
 
     delete(todo : ToDo) : Observable<ToDo> {
-        return this.http.delete<ToDo>(`http://localhost:8080/api/todos/${todo.id}`)
+        const urlDelete = `${this.url}/${todo.id}`
+        return this.http.delete<ToDo>(urlDelete)
+        }
+    done(todo : ToDo) : Observable<ToDo> {
+        const urlFeito = `${this.url}/${todo.id}/feito`
+        return this.http.patch<ToDo>(urlFeito, {})
         }
    
 }
