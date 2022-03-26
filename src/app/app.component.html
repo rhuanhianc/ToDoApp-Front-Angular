@@ -1,16 +1,18 @@
-//create a navbar blue bootsrap
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
   <a class="navbar-brand" href="#">ToDo App</a>
 </nav>
 <div class="container mt-5">
     <h3>ToDos</h3>
     <hr/>
-    <div class="row">
-        <div class="col-md-6">
-            <input type="text" class="form-control"/>
-        </div>
-        <div class="col-md-1">
-            <button class="btn btn-primary">Add</button>
-        </div>
-    </div>
+    <form [formGroup]="form" (ngSubmit)="submit()">
+        <div class="row">
+                <div class="col-md-6">
+                    <input type="text" class="form-control" formControlName= "descricao"/>
+                </div>
+                <div class="col-md-1">
+                    <button type= "submit" class="btn btn-primary">Add</button>
+                </div>
+            </div>
+    </form>
 </div>
