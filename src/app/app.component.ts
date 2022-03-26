@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToDo } from './todo';
 import { TodoService } from './todo.service';
 @Component({
@@ -11,7 +11,7 @@ export class AppComponent implements OnInit {
   
   todos : ToDo[] = []
   form: FormGroup = new FormGroup({
-    descricao : new FormControl(''),
+    descricao : new FormControl('',[Validators.required, Validators.minLength(3)]),
   });
 
   constructor( private service: TodoService) { 
