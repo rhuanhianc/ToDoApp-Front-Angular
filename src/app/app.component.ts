@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { ToDo } from './todo';
+import { TodoService } from './todo.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -11,7 +13,14 @@ export class AppComponent {
     descricao : new FormControl(''),
   });
 
+  constructor( private service: TodoService) { 
+  
+  }
+
   submit() {
     console.log(this.form.value);
+    const todo : ToDo = {...this.form.value}
+    this.service.salvar(todo)
+    .subscribe(todoSalvo => console.log(todo));
   }
 }
